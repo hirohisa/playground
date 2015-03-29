@@ -4,7 +4,7 @@ AnimationTest
 Sample
 -------------
 
-![ ](https://raw.github.com/hirohisa/AnimationTest/master/Gif/snake.gif)
+![ ](Gif/snake.gif)
 
 
 Patterns
