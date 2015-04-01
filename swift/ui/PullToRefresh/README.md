@@ -16,5 +16,5 @@ Usage
 
 - UIRefreshControl end animation. It needs to be called by `self view controller`.
   ```
-  public func viewDidRefresh()
+  func viewDidRefresh()
   ```
