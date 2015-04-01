@@ -1,0 +1,23 @@
+PODS:
+  - ReactKit (0.8.0):
+    - SwiftTask (~> 2.6.4)
+  - SwiftTask (2.6.4)
+
+DEPENDENCIES:
+  - ReactKit (from `https://github.com/ReactKit/ReactKit.git`, branch `refactor`)
+
+EXTERNAL SOURCES:
+  ReactKit:
+    :branch: refactor
+    :git: https://github.com/ReactKit/ReactKit.git
+
+CHECKOUT OPTIONS:
+  ReactKit:
+    :commit: 637c39f7e7d80d4ff395901acab622d636545499
+    :git: https://github.com/ReactKit/ReactKit.git
+
+SPEC CHECKSUMS:
+  ReactKit: 4463df303251fb8fc04c36b931b722ac20328a59
+  SwiftTask: c8676ab1b0f632c65d4a945a6f0137a48d8edf22
+
+COCOAPODS: 0.36.0
