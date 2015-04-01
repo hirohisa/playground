@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import ReactKit
 
 class ViewController: UIViewController {
 
+    let textField: UITextField = {
+        let textField = UITextField(frame: CGRectZero)
+        return textField
+    }()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
