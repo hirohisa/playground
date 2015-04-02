@@ -21,7 +21,7 @@ class ViewController: UIViewController {
 
         textField.frame = CGRect(x: 10, y: 100, width: view.frame.width - 20, height: 60)
         textField.borderStyle = .Line
-        textField.textChangedSignal().ownedBy(self).react{ string in
+        textField.textChangedSignal().ownedBy(self) ~> { string in
             println(string)
         }
         view.addSubview(textField)
