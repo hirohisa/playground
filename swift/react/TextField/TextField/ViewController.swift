@@ -11,7 +11,6 @@ import ReactKit
 
 class ViewController: UIViewController {
 
-    var textFieldSignal: ReactKit.Signal<NSString?>?
     let textField: UITextField = {
         let textField = UITextField(frame: CGRectZero)
         return textField
@@ -22,10 +21,9 @@ class ViewController: UIViewController {
 
         textField.frame = CGRect(x: 10, y: 100, width: view.frame.width - 20, height: 60)
         textField.borderStyle = .Line
-        textFieldSignal = textField.textChangedSignal()
-
-        ^{ println($0) } <~ textFieldSignal!
-
+        textField.textChangedSignal().ownedBy(self).react{ string in
+            println(string)
+        }
         view.addSubview(textField)
     }
 
