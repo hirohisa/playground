@@ -10,6 +10,8 @@
 		65F7BF6C1AD3C90800B8F712 /* PhotoPicker.h in Headers */ = {isa = PBXBuildFile; fileRef = 65F7BF6B1AD3C90800B8F712 /* PhotoPicker.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65F7BF721AD3C90800B8F712 /* PhotoPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F7BF661AD3C90800B8F712 /* PhotoPicker.framework */; };
 		65F7BF791AD3C90800B8F712 /* PhotoPickerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F7BF781AD3C90800B8F712 /* PhotoPickerTests.swift */; };
+		A15DE3F11AD865CD009E96A7 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15DE3F01AD865CD009E96A7 /* PhotoPicker.swift */; };
+		A15DE3F31AD86618009E96A7 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15DE3F21AD86618009E96A7 /* CollectionViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +31,8 @@
 		65F7BF711AD3C90800B8F712 /* PhotoPickerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoPickerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65F7BF771AD3C90800B8F712 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65F7BF781AD3C90800B8F712 /* PhotoPickerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerTests.swift; sourceTree = "<group>"; };
+		A15DE3F01AD865CD009E96A7 /* PhotoPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
+		A15DE3F21AD86618009E96A7 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				65F7BF6B1AD3C90800B8F712 /* PhotoPicker.h */,
+				A15DE3F01AD865CD009E96A7 /* PhotoPicker.swift */,
+				A15DE3F21AD86618009E96A7 /* CollectionViewController.swift */,
 				65F7BF691AD3C90800B8F712 /* Supporting Files */,
 			);
 			path = PhotoPicker;
@@ -209,6 +215,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A15DE3F31AD86618009E96A7 /* CollectionViewController.swift in Sources */,
+				A15DE3F11AD865CD009E96A7 /* PhotoPicker.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +327,7 @@
 		65F7BF7D1AD3C90800B8F712 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -328,12 +337,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		65F7BF7E1AD3C90800B8F712 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -395,6 +406,7 @@
 				65F7BF7E1AD3C90800B8F712 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		65F7BF7F1AD3C90800B8F712 /* Build configuration list for PBXNativeTarget "PhotoPickerTests" */ = {
 			isa = XCConfigurationList;
@@ -403,6 +415,7 @@
 				65F7BF811AD3C90800B8F712 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

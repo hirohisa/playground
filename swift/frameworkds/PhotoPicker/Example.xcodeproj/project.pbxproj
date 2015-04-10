@@ -13,7 +13,7 @@
 		65F7BF981AD3CCD000B8F712 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65F7BF971AD3CCD000B8F712 /* Images.xcassets */; };
 		65F7BF9B1AD3CCD000B8F712 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65F7BF991AD3CCD000B8F712 /* LaunchScreen.xib */; };
 		65F7BFA71AD3CCD000B8F712 /* ExampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F7BFA61AD3CCD000B8F712 /* ExampleTests.swift */; };
-		65F7BFB31AD3CD2100B8F712 /* PhotoPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65F7BFB21AD3CD2100B8F712 /* PhotoPicker.framework */; };
+		A15DE3F71AD86B53009E96A7 /* PhotoPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15DE3F61AD86B53009E96A7 /* PhotoPicker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +37,7 @@
 		65F7BFA01AD3CCD000B8F712 /* ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65F7BFA51AD3CCD000B8F712 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65F7BFA61AD3CCD000B8F712 /* ExampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExampleTests.swift; sourceTree = "<group>"; };
-		65F7BFB21AD3CD2100B8F712 /* PhotoPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotoPicker.framework; path = "build/Debug-iphoneos/PhotoPicker.framework"; sourceTree = "<group>"; };
+		A15DE3F61AD86B53009E96A7 /* PhotoPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PhotoPicker.framework; path = "build/Debug-iphoneos/PhotoPicker.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,7 +45,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65F7BFB31AD3CD2100B8F712 /* PhotoPicker.framework in Frameworks */,
+				A15DE3F71AD86B53009E96A7 /* PhotoPicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,7 +62,7 @@
 		65F7BF821AD3CCD000B8F712 = {
 			isa = PBXGroup;
 			children = (
-				65F7BFB21AD3CD2100B8F712 /* PhotoPicker.framework */,
+				A15DE3F61AD86B53009E96A7 /* PhotoPicker.framework */,
 				65F7BF8D1AD3CCD000B8F712 /* Example */,
 				65F7BFA31AD3CCD000B8F712 /* ExampleTests */,
 				65F7BF8C1AD3CCD000B8F712 /* Products */,

@@ -7,19 +7,29 @@
 //
 
 import UIKit
+import PhotoPicker
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        let frame = CGRect(x: 200, y: 300, width: 80, height: 44)
+        let button = UIButton(frame: frame)
+        button.setTitle("開く", forState: .Normal)
+        button.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        button.backgroundColor = UIColor.grayColor()
+        button.addTarget(self, action: "showPhotoPicker", forControlEvents: .TouchUpInside)
+        view.addSubview(button)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
-
+    func showPhotoPicker() {
+        let picker = PhotoPicker()
+        picker.showIn(source: self)
+    }
 }
 
