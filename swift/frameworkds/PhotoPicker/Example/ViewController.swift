@@ -14,13 +14,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let frame = CGRect(x: 200, y: 300, width: 80, height: 44)
-        let button = UIButton(frame: frame)
-        button.setTitle("開く", forState: .Normal)
-        button.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        button.backgroundColor = UIColor.grayColor()
-        button.addTarget(self, action: "showPhotoPicker", forControlEvents: .TouchUpInside)
-        view.addSubview(button)
+        let delay = 0.5 * Double(NSEC_PER_SEC)
+        let time  = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
+        dispatch_after(time, dispatch_get_main_queue(), {
+            self.showPhotoPicker()
+        })
     }
 
     override func didReceiveMemoryWarning() {
