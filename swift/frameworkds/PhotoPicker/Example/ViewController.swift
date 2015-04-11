@@ -29,7 +29,7 @@ class ViewController: UIViewController {
 
     func showPhotoPicker() {
         let picker = PhotoPicker()
-        picker.showIn(source: self)
+        picker.showIn(viewController: self)
     }
 }
 

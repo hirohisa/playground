@@ -14,7 +14,7 @@ public class PhotoPicker {
     public init() {
     }
 
-    public func showIn(#source: UIViewController) {
+    public func showIn(viewController source: UIViewController) {
         let controller = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
         let takeAPictureAction = UIAlertAction(title: "写真を撮る", style: .Default) { _ in
         }
