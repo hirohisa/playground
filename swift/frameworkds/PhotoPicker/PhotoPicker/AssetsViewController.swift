@@ -1,5 +1,5 @@
 //
-//  CollectionViewController.swift
+//  AssetsViewController.swift
 //  PhotoPicker
 //
 //  Created by Hirohisa Kawasaki on 4/11/15.
@@ -9,7 +9,7 @@
 import UIKit
 
 
-extension PhotoPicker {
+extension PhotoPicker.AlbumViewController {
 
     class Cell: UICollectionViewCell {
         let imageView = UIImageView(frame: CGRectZero)
@@ -21,7 +21,7 @@ extension PhotoPicker {
         }
     }
 
-    class CollectionViewController: UICollectionViewController {
+    class AssetsViewController: UICollectionViewController {
 
         required override init() {
             let collectionViewLayout = UICollectionViewFlowLayout()
@@ -35,6 +35,6 @@ extension PhotoPicker {
 }
 
 
-extension PhotoPicker.CollectionViewController {
+extension PhotoPicker.AlbumViewController.AssetsViewController {
 
 }

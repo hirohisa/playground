@@ -10,7 +10,7 @@ import Foundation
 
 public class PhotoPicker {
 
-    let viewController = CollectionViewController()
+    let album = AlbumViewController()
     public init() {
     }
 
@@ -19,13 +19,33 @@ public class PhotoPicker {
         let takeAPictureAction = UIAlertAction(title: "写真を撮る", style: .Default) { _ in
         }
         controller.addAction(takeAPictureAction)
-        let cameraRollAction = UIAlertAction(title: "カメラロールを開く", style: .Default) { _ in
+        let albumAction = UIAlertAction(title: "アルバムを開く", style: .Default) { _ in
+            self.showAlbum(source: source)
         }
-        controller.addAction(cameraRollAction)
+        controller.addAction(albumAction)
         let cancelAction = UIAlertAction(title: "キャンセル", style: .Cancel) { _ in
         }
         controller.addAction(cancelAction)
 
         source.presentViewController(controller, animated: true) { _ in }
     }
+}
+
+
+// MARK: Camera
+
+extension PhotoPicker {
+}
+
+// MARK: Album
+
+extension PhotoPicker {
+
+    func showAlbum(#source: UIViewController) {
+        let presentViewController = UINavigationController(rootViewController: album)
+
+        source.presentViewController(presentViewController, animated: true) {
+        }
+    }
+
 }
