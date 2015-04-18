@@ -5,7 +5,7 @@ sample codes or module in development
 ## Links
 
 - [AnimationTest](swift/ui/AnimationTest)
-- [PullToRefresh](swift/ui/PullToRefresh)
+- [PullToRefresh](https://github.com/hirohisa/PullToRefresh)
 
 ### in development
 
