@@ -1,0 +1,12 @@
+PODS:
+  - React (0.4.0):
+    - React/Core (= 0.4.0)
+  - React/Core (0.4.0)
+
+DEPENDENCIES:
+  - React
+
+SPEC CHECKSUMS:
+  React: fd7c744a4445caf86b6e6df247845d12a7182c1a
+
+COCOAPODS: 0.36.4
