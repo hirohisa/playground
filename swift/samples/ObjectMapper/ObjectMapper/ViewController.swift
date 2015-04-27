@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         JsonReader.task("JSON/octocat").resume { result in
-            println(result)
+            //println(result)
         }
     }
 

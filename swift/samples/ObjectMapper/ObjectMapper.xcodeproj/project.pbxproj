@@ -15,6 +15,7 @@
 		65EAC33D1AEE5E6200CF4FA4 /* ObjectMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EAC33C1AEE5E6200CF4FA4 /* ObjectMapperTests.swift */; };
 		65EAC3471AEE625F00CF4FA4 /* JsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EAC3461AEE625F00CF4FA4 /* JsonReader.swift */; };
 		65EAC3491AEE642F00CF4FA4 /* JSON in Resources */ = {isa = PBXBuildFile; fileRef = 65EAC3481AEE642F00CF4FA4 /* JSON */; };
+		65EAC34B1AEE65BE00CF4FA4 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EAC34A1AEE65BE00CF4FA4 /* User.swift */; };
 		D417C1B88B3EDEA03C6FCDBE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E9F121B6424195A9A58016 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		65EAC33C1AEE5E6200CF4FA4 /* ObjectMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectMapperTests.swift; sourceTree = "<group>"; };
 		65EAC3461AEE625F00CF4FA4 /* JsonReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JsonReader.swift; path = ../../frameworkds/JsonReader/JsonReader.swift; sourceTree = "<group>"; };
 		65EAC3481AEE642F00CF4FA4 /* JSON */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JSON; sourceTree = "<group>"; };
+		65EAC34A1AEE65BE00CF4FA4 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C78A6078867B110D183E2310 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F5E9F121B6424195A9A58016 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -98,6 +100,7 @@
 		65EAC3231AEE5E6200CF4FA4 /* ObjectMapper */ = {
 			isa = PBXGroup;
 			children = (
+				65EAC34C1AEE65CD00CF4FA4 /* GitHub */,
 				65EAC3261AEE5E6200CF4FA4 /* AppDelegate.swift */,
 				65EAC3281AEE5E6200CF4FA4 /* ViewController.swift */,
 				65EAC32A1AEE5E6200CF4FA4 /* Main.storyboard */,
@@ -131,6 +134,14 @@
 				65EAC33B1AEE5E6200CF4FA4 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		65EAC34C1AEE65CD00CF4FA4 /* GitHub */ = {
+			isa = PBXGroup;
+			children = (
+				65EAC34A1AEE65BE00CF4FA4 /* User.swift */,
+			);
+			name = GitHub;
 			sourceTree = "<group>";
 		};
 		E7FFEAAE8D7432D9940C62E8 /* Pods */ = {
@@ -295,6 +306,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65EAC3291AEE5E6200CF4FA4 /* ViewController.swift in Sources */,
+				65EAC34B1AEE65BE00CF4FA4 /* User.swift in Sources */,
 				65EAC3471AEE625F00CF4FA4 /* JsonReader.swift in Sources */,
 				65EAC3271AEE5E6200CF4FA4 /* AppDelegate.swift in Sources */,
 			);
