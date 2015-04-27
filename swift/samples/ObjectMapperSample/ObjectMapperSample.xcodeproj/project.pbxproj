@@ -16,6 +16,7 @@
 		A1E7CE8F1AEEA7A400AFC598 /* ObjectMapperSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7CE8E1AEEA7A400AFC598 /* ObjectMapperSampleTests.swift */; };
 		A1E7CE991AEEA81D00AFC598 /* JSON in Resources */ = {isa = PBXBuildFile; fileRef = A1E7CE981AEEA81D00AFC598 /* JSON */; };
 		A1E7CE9C1AEEA86000AFC598 /* JsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7CE9B1AEEA86000AFC598 /* JsonReader.swift */; };
+		A1E7CE9F1AEEA8FF00AFC598 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E7CE9E1AEEA8FF00AFC598 /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 		A1E7CE8E1AEEA7A400AFC598 /* ObjectMapperSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectMapperSampleTests.swift; sourceTree = "<group>"; };
 		A1E7CE981AEEA81D00AFC598 /* JSON */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JSON; sourceTree = "<group>"; };
 		A1E7CE9B1AEEA86000AFC598 /* JsonReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JsonReader.swift; sourceTree = "<group>"; };
+		A1E7CE9E1AEEA8FF00AFC598 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		EBB6454115B6509914E87528 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +109,7 @@
 		A1E7CE751AEEA7A400AFC598 /* ObjectMapperSample */ = {
 			isa = PBXGroup;
 			children = (
+				A1E7CE9D1AEEA8F300AFC598 /* GitHub */,
 				A1E7CE781AEEA7A400AFC598 /* AppDelegate.swift */,
 				A1E7CE7A1AEEA7A400AFC598 /* ViewController.swift */,
 				A1E7CE7C1AEEA7A400AFC598 /* Main.storyboard */,
@@ -149,6 +152,14 @@
 			);
 			name = JsonReader;
 			path = ../../frameworkds/JsonReader;
+			sourceTree = "<group>";
+		};
+		A1E7CE9D1AEEA8F300AFC598 /* GitHub */ = {
+			isa = PBXGroup;
+			children = (
+				A1E7CE9E1AEEA8FF00AFC598 /* User.swift */,
+			);
+			name = GitHub;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,6 +315,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1E7CE7B1AEEA7A400AFC598 /* ViewController.swift in Sources */,
+				A1E7CE9F1AEEA8FF00AFC598 /* User.swift in Sources */,
 				A1E7CE9C1AEEA86000AFC598 /* JsonReader.swift in Sources */,
 				A1E7CE791AEEA7A400AFC598 /* AppDelegate.swift in Sources */,
 			);

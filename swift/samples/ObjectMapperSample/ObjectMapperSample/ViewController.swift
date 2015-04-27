@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import ObjectMapper
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         JsonReader.task("JSON/octocat").resume { result in
-            println(result)
+            //println(result)
+            let user = Mapper<User>().map(result)
+            println(user)
         }
     }
 
