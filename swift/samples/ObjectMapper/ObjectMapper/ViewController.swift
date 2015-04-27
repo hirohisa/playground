@@ -12,6 +12,10 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        JsonReader.task("JSON/octocat").resume { result in
+            println(result)
+        }
     }
 
     override func didReceiveMemoryWarning() {

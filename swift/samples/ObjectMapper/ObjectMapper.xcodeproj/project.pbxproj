@@ -13,6 +13,8 @@
 		65EAC32E1AEE5E6200CF4FA4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65EAC32D1AEE5E6200CF4FA4 /* Images.xcassets */; };
 		65EAC3311AEE5E6200CF4FA4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65EAC32F1AEE5E6200CF4FA4 /* LaunchScreen.xib */; };
 		65EAC33D1AEE5E6200CF4FA4 /* ObjectMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EAC33C1AEE5E6200CF4FA4 /* ObjectMapperTests.swift */; };
+		65EAC3471AEE625F00CF4FA4 /* JsonReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EAC3461AEE625F00CF4FA4 /* JsonReader.swift */; };
+		65EAC3491AEE642F00CF4FA4 /* JSON in Resources */ = {isa = PBXBuildFile; fileRef = 65EAC3481AEE642F00CF4FA4 /* JSON */; };
 		D417C1B88B3EDEA03C6FCDBE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5E9F121B6424195A9A58016 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -38,6 +40,8 @@
 		65EAC3361AEE5E6200CF4FA4 /* ObjectMapperTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjectMapperTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65EAC33B1AEE5E6200CF4FA4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65EAC33C1AEE5E6200CF4FA4 /* ObjectMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectMapperTests.swift; sourceTree = "<group>"; };
+		65EAC3461AEE625F00CF4FA4 /* JsonReader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = JsonReader.swift; path = ../../frameworkds/JsonReader/JsonReader.swift; sourceTree = "<group>"; };
+		65EAC3481AEE642F00CF4FA4 /* JSON */ = {isa = PBXFileReference; lastKnownFileType = folder; path = JSON; sourceTree = "<group>"; };
 		C78A6078867B110D183E2310 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		F5E9F121B6424195A9A58016 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -72,6 +76,8 @@
 		65EAC3181AEE5E6200CF4FA4 = {
 			isa = PBXGroup;
 			children = (
+				65EAC3461AEE625F00CF4FA4 /* JsonReader.swift */,
+				65EAC3481AEE642F00CF4FA4 /* JSON */,
 				65EAC3231AEE5E6200CF4FA4 /* ObjectMapper */,
 				65EAC3391AEE5E6200CF4FA4 /* ObjectMapperTests */,
 				65EAC3221AEE5E6200CF4FA4 /* Products */,
@@ -221,6 +227,7 @@
 			files = (
 				65EAC32C1AEE5E6200CF4FA4 /* Main.storyboard in Resources */,
 				65EAC3311AEE5E6200CF4FA4 /* LaunchScreen.xib in Resources */,
+				65EAC3491AEE642F00CF4FA4 /* JSON in Resources */,
 				65EAC32E1AEE5E6200CF4FA4 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -288,6 +295,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65EAC3291AEE5E6200CF4FA4 /* ViewController.swift in Sources */,
+				65EAC3471AEE625F00CF4FA4 /* JsonReader.swift in Sources */,
 				65EAC3271AEE5E6200CF4FA4 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
