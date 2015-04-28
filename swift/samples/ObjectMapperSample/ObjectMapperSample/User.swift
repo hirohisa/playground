@@ -9,7 +9,8 @@
 import Foundation
 import ObjectMapper
 
-class User: Mappable {
+
+class MappedUser: Mappable {
 
     var publicRepos: Int!
     var reposURL : String!
@@ -22,5 +23,17 @@ class User: Mappable {
     func mapping(map: Map) {
         publicRepos     <- map["public_repos"]
         reposURL        <- map["repos_url"]
+    }
+}
+
+class User {
+
+    let publicRepos: Int
+    let reposURL : String
+
+    init(user: MappedUser) {
+
+        publicRepos = user.publicRepos
+        reposURL = user.reposURL
     }
 }

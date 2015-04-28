@@ -15,8 +15,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         JsonReader.task("JSON/octocat").resume { result in
             //println(result)
-            let user = Mapper<User>().map(result)
-            println(user)
+            if let mappedUser = Mapper<MappedUser>().map(result) {
+                let user = User(user: mappedUser)
+                println(user)
+                println(user.reposURL)
+            }
         }
     }
 
