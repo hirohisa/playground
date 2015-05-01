@@ -8,11 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		A19DF78B1AF3FA300006902E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19DF78A1AF3FA300006902E /* AppDelegate.swift */; };
-		A19DF78D1AF3FA300006902E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19DF78C1AF3FA300006902E /* ViewController.swift */; };
+		A19DF78D1AF3FA300006902E /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19DF78C1AF3FA300006902E /* RootViewController.swift */; };
 		A19DF7901AF3FA300006902E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A19DF78E1AF3FA300006902E /* Main.storyboard */; };
 		A19DF7921AF3FA300006902E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A19DF7911AF3FA300006902E /* Images.xcassets */; };
 		A19DF7951AF3FA300006902E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19DF7931AF3FA300006902E /* LaunchScreen.xib */; };
 		A19DF7A11AF3FA300006902E /* NSNotificationCenterSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19DF7A01AF3FA300006902E /* NSNotificationCenterSampleTests.swift */; };
+		A19DF7AB1AF4071F0006902E /* KeyboardController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19DF7AA1AF4071F0006902E /* KeyboardController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,13 +30,14 @@
 		A19DF7851AF3FA300006902E /* NSNotificationCenterSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSNotificationCenterSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A19DF7891AF3FA300006902E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A19DF78A1AF3FA300006902E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A19DF78C1AF3FA300006902E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A19DF78C1AF3FA300006902E /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		A19DF78F1AF3FA300006902E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A19DF7911AF3FA300006902E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		A19DF7941AF3FA300006902E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		A19DF79A1AF3FA300006902E /* NSNotificationCenterSampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NSNotificationCenterSampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A19DF79F1AF3FA300006902E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A19DF7A01AF3FA300006902E /* NSNotificationCenterSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSNotificationCenterSampleTests.swift; sourceTree = "<group>"; };
+		A19DF7AA1AF4071F0006902E /* KeyboardController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,7 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				A19DF78A1AF3FA300006902E /* AppDelegate.swift */,
-				A19DF78C1AF3FA300006902E /* ViewController.swift */,
+				A19DF78C1AF3FA300006902E /* RootViewController.swift */,
+				A19DF7AA1AF4071F0006902E /* KeyboardController.swift */,
 				A19DF78E1AF3FA300006902E /* Main.storyboard */,
 				A19DF7911AF3FA300006902E /* Images.xcassets */,
 				A19DF7931AF3FA300006902E /* LaunchScreen.xib */,
@@ -212,7 +215,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A19DF78D1AF3FA300006902E /* ViewController.swift in Sources */,
+				A19DF78D1AF3FA300006902E /* RootViewController.swift in Sources */,
+				A19DF7AB1AF4071F0006902E /* KeyboardController.swift in Sources */,
 				A19DF78B1AF3FA300006902E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
