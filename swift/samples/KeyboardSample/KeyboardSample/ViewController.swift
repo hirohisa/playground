@@ -200,7 +200,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     func updateTextViewHeight() {
         let oldHeight = textView.frame.height
-        let maxHeight = UIInterfaceOrientationIsPortrait(interfaceOrientation) ? textViewMaxHeight.portrait : textViewMaxHeight.landscape
+        let maxHeight = textViewMaxHeight.portrait
         var newHeight = min(textView.sizeThatFits(CGSize(width: textView.frame.width, height: CGFloat.max)).height, maxHeight)
         #if arch(x86_64) || arch(arm64)
             newHeight = ceil(newHeight)
@@ -239,23 +239,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         }
     }
 
-    // Handle actions #CopyMessage
-    // 1. Select row and show "Copy" menu
-    func messageShowMenuAction(gestureRecognizer: UITapGestureRecognizer) {
-        let twoTaps = (gestureRecognizer.numberOfTapsRequired == 2)
-        let doubleTap = (twoTaps && gestureRecognizer.state == .Ended)
-        let longPress = (!twoTaps && gestureRecognizer.state == .Began)
-        if doubleTap || longPress {
-            let pressedIndexPath = tableView.indexPathForRowAtPoint(gestureRecognizer.locationInView(tableView))!
-            tableView.selectRowAtIndexPath(pressedIndexPath, animated: false, scrollPosition: .None)
-
-            let menuController = UIMenuController.sharedMenuController()
-            let bubbleImageView = gestureRecognizer.view!
-            menuController.setTargetRect(bubbleImageView.frame, inView: bubbleImageView.superview!)
-            menuController.menuItems = [UIMenuItem(title: "Copy", action: "messageCopyTextAction:")]
-            menuController.setMenuVisible(true, animated: true)
-        }
-    }
 }
 
 // Only show "Copy" when editing `textView` #CopyMessage
