@@ -15,6 +15,7 @@
 		65EF7E8E1AFB02AA006B9AE8 /* KeyboardSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EF7E8D1AFB02AA006B9AE8 /* KeyboardSampleTests.swift */; };
 		65EF7EA61AFB0B5E006B9AE8 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EF7EA51AFB0B5E006B9AE8 /* KeyboardViewController.swift */; };
 		65EF7EA91AFB0B5E006B9AE8 /* CustomKeyBoard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 65EF7EA11AFB0B5E006B9AE8 /* CustomKeyBoard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		65EF7EAF1AFB161A006B9AE8 /* MessageBubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EF7EAE1AFB161A006B9AE8 /* MessageBubbleCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		65EF7EA11AFB0B5E006B9AE8 /* CustomKeyBoard.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CustomKeyBoard.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		65EF7EA41AFB0B5E006B9AE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65EF7EA51AFB0B5E006B9AE8 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		65EF7EAE1AFB161A006B9AE8 /* MessageBubbleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBubbleCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 			children = (
 				65EF7E771AFB02AA006B9AE8 /* AppDelegate.swift */,
 				65EF7E791AFB02AA006B9AE8 /* ViewController.swift */,
+				65EF7EAE1AFB161A006B9AE8 /* MessageBubbleCell.swift */,
 				65EF7E7B1AFB02AA006B9AE8 /* Main.storyboard */,
 				65EF7E7E1AFB02AA006B9AE8 /* Images.xcassets */,
 				65EF7E801AFB02AA006B9AE8 /* LaunchScreen.xib */,
@@ -296,6 +299,7 @@
 			files = (
 				65EF7E7A1AFB02AA006B9AE8 /* ViewController.swift in Sources */,
 				65EF7E781AFB02AA006B9AE8 /* AppDelegate.swift in Sources */,
+				65EF7EAF1AFB161A006B9AE8 /* MessageBubbleCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
