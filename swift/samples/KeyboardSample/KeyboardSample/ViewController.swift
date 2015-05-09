@@ -135,11 +135,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     override func viewDidAppear(animated: Bool)  {
         super.viewDidAppear(animated)
-        tableView.flashScrollIndicators()
+        tableViewScrollToBottomAnimated(false)
     }
 
     override func viewWillDisappear(animated: Bool)  {
         super.viewWillDisappear(animated)
+    }
+
+    override func viewDidDisappear(animated: Bool) {
+        super.viewDidDisappear(animated)
+        tableView.flashScrollIndicators()
     }
 
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -248,9 +253,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func tableViewScrollToBottomAnimated(animated: Bool) {
-        let numberOfRows = tableView.numberOfRowsInSection(0)
+        let lastSection = tableView.numberOfSections() - 1
+        let numberOfRows = tableView.numberOfRowsInSection(lastSection)
         if numberOfRows > 0 {
-            tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: numberOfRows-1, inSection: 0), atScrollPosition: .Bottom, animated: animated)
+            tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: numberOfRows-1, inSection: lastSection), atScrollPosition: .Bottom, animated: animated)
         }
     }
 
