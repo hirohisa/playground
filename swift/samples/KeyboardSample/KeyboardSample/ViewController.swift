@@ -138,10 +138,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableViewScrollToBottomAnimated(false)
     }
 
-    override func viewWillDisappear(animated: Bool)  {
-        super.viewWillDisappear(animated)
-    }
-
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
         tableView.flashScrollIndicators()
