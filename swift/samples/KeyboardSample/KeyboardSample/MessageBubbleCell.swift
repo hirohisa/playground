@@ -7,26 +7,6 @@
 //
 
 import UIKit
-/*
-
-class MessageBubbleCell: UITableViewCell {
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
-}
-
-*/
-
-import UIKit
 
 let incomingTag = 0, outgoingTag = 1
 let bubbleTag = 8

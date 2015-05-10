@@ -30,7 +30,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     var textView: UITextView!
     var sendButton: UIButton!
     var rotating = false
-    var messages: [[Message]] = []
+    var messages: [Message] = []
 
     override var inputAccessoryView: UIView! {
         get {
@@ -81,30 +81,20 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         super.viewDidLoad()
 
         messages = [
-            [
-                Message(incoming: true, text: "I really enjoyed programming with you! :-)", sentDate: NSDate(timeIntervalSinceNow: -60*60*24*2-60*60)),
-                Message(incoming: false, text: "Thanks! Me too! :-)", sentDate: NSDate(timeIntervalSinceNow: -60*60*24*2))
-            ],
-            [
-                Message(incoming: true, text: "Hey, would you like to spend some time together tonight and work on Acani?", sentDate: NSDate(timeIntervalSinceNow: -33)),
-                Message(incoming: false, text: "Sure, I'd love to. How's 6 PM?", sentDate: NSDate(timeIntervalSinceNow: -19)),
-                Message(incoming: true, text: "6 sounds good :-)", sentDate: NSDate())
-            ],
-            [
-                Message(incoming: true, text: "Hey, would you like to spend some time together tonight and work on Acani?", sentDate: NSDate(timeIntervalSinceNow: -33)),
-                Message(incoming: false, text: "Sure, I'd love to. How's 6 PM?", sentDate: NSDate(timeIntervalSinceNow: -19)),
-                Message(incoming: true, text: "6 sounds good :-)", sentDate: NSDate())
-            ],
-            [
-                Message(incoming: true, text: "Hey, would you like to spend some time together tonight and work on Acani?", sentDate: NSDate(timeIntervalSinceNow: -33)),
-                Message(incoming: false, text: "Sure, I'd love to. How's 6 PM?", sentDate: NSDate(timeIntervalSinceNow: -19)),
-                Message(incoming: true, text: "6 sounds good :-)", sentDate: NSDate())
-            ],
-            [
-                Message(incoming: true, text: "Hey, would you like to spend some time together tonight and work on Acani?", sentDate: NSDate(timeIntervalSinceNow: -33)),
-                Message(incoming: false, text: "Sure, I'd love to. How's 6 PM?", sentDate: NSDate(timeIntervalSinceNow: -19)),
-                Message(incoming: true, text: "6 sounds good :-)", sentDate: NSDate())
-            ],
+            Message(incoming: true, text: "I really enjoyed programming with you! :-)", sentDate: NSDate(timeIntervalSinceNow: -60*60*24*2-60*60)),
+            Message(incoming: false, text: "Thanks! Me too! :-)", sentDate: NSDate(timeIntervalSinceNow: -60*60*24*2)),
+            Message(incoming: true, text: "Hey, would you like to spend some time together tonight and work on Acani?", sentDate: NSDate(timeIntervalSinceNow: -33)),
+            Message(incoming: false, text: "Sure, I'd love to. How's 6 PM?", sentDate: NSDate(timeIntervalSinceNow: -19)),
+            Message(incoming: true, text: "6 sounds good :-)", sentDate: NSDate()),
+            Message(incoming: true, text: "Hey, would you like to spend some time together tonight and work on Acani?", sentDate: NSDate(timeIntervalSinceNow: -33)),
+            Message(incoming: false, text: "Sure, I'd love to. How's 6 PM?", sentDate: NSDate(timeIntervalSinceNow: -19)),
+            Message(incoming: true, text: "6 sounds good :-)", sentDate: NSDate()),
+            Message(incoming: true, text: "Hey, would you like to spend some time together tonight and work on Acani?", sentDate: NSDate(timeIntervalSinceNow: -33)),
+            Message(incoming: false, text: "Sure, I'd love to. How's 6 PM?", sentDate: NSDate(timeIntervalSinceNow: -19)),
+            Message(incoming: true, text: "6 sounds good :-)", sentDate: NSDate()),
+            Message(incoming: true, text: "Hey, would you like to spend some time together tonight and work on Acani?", sentDate: NSDate(timeIntervalSinceNow: -33)),
+            Message(incoming: false, text: "Sure, I'd love to. How's 6 PM?", sentDate: NSDate(timeIntervalSinceNow: -19)),
+            Message(incoming: true, text: "6 sounds good :-)", sentDate: NSDate()),
         ]
 
         let whiteColor = UIColor.whiteColor()
@@ -148,13 +138,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages[section].count
+        return 1
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = NSStringFromClass(MessageBubbleCell)
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! MessageBubbleCell
-        let message = messages[indexPath.section][indexPath.row]
+        let message = messages[indexPath.row]
         cell.configureWithMessage(message)
         return cell
     }
@@ -233,7 +223,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         textView.resignFirstResponder()
         textView.becomeFirstResponder()
 
-        messages.append([Message(incoming: false, text: textView.text, sentDate: NSDate())])
+        messages.append(Message(incoming: false, text: textView.text, sentDate: NSDate()))
         textView.text = nil
         updateTextViewHeight()
         sendButton.enabled = false
