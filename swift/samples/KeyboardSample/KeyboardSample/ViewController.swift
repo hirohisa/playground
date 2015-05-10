@@ -37,7 +37,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             if toolBar == nil {
                 toolBar = UIToolbar(frame: CGRectMake(0, 0, 0, toolBarMinHeight-0.5))
 
-                textView = InputTextView(frame: CGRectZero)
+                textView = UITextView(frame: CGRectZero)
                 textView.backgroundColor = UIColor(white: 250/255, alpha: 1)
                 textView.delegate = self
                 textView.font = UIFont.systemFontOfSize(messageFontSize)
@@ -254,18 +254,5 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         if numberOfRows > 0 {
             tableView.scrollToRowAtIndexPath(NSIndexPath(forRow: numberOfRows-1, inSection: lastSection), atScrollPosition: .Bottom, animated: animated)
         }
-    }
-
-}
-
-// Only show "Copy" when editing `textView` #CopyMessage
-class InputTextView: UITextView {
-    override func canPerformAction(action: Selector, withSender sender: AnyObject!) -> Bool {
-        return super.canPerformAction(action, withSender: sender)
-    }
-    
-    // More specific than implementing `nextResponder` to return `delegate`, which might cause side effects?
-    func messageCopyTextAction(menuController: UIMenuController) {
-        //(delegate as! ChatViewController).messageCopyTextAction(menuController)
     }
 }
