@@ -26,59 +26,26 @@ let textViewMaxHeight: (portrait: CGFloat, landscape: CGFloat) = (portrait: 272,
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate {
     var tableView: UITableView!
-    var toolBar: UIToolbar!
-    var textView: UITextView!
-    var sendButton: UIButton!
-    var rotating = false
+    var toolBar = MessageBar(frame: CGRectMake(0, 0, 0, toolBarMinHeight-0.5))
     var messages: [Message] = []
 
     override var inputAccessoryView: UIView! {
-        get {
-            if toolBar == nil {
-                toolBar = UIToolbar(frame: CGRectMake(0, 0, 0, toolBarMinHeight-0.5))
-
-                textView = UITextView(frame: CGRectZero)
-                textView.backgroundColor = UIColor(white: 250/255, alpha: 1)
-                textView.delegate = self
-                textView.font = UIFont.systemFontOfSize(messageFontSize)
-                textView.layer.borderColor = UIColor(red: 200/255, green: 200/255, blue: 205/255, alpha:1).CGColor
-                textView.layer.borderWidth = 0.5
-                textView.layer.cornerRadius = 5
-                //        textView.placeholder = "Message"
-                textView.scrollsToTop = false
-                textView.textContainerInset = UIEdgeInsetsMake(4, 3, 3, 3)
-                toolBar.addSubview(textView)
-
-                sendButton = UIButton.buttonWithType(.System) as! UIButton
-                sendButton.enabled = false
-                sendButton.titleLabel?.font = UIFont.boldSystemFontOfSize(17)
-                sendButton.setTitle("Send", forState: .Normal)
-                sendButton.setTitleColor(UIColor(red: 142/255, green: 142/255, blue: 147/255, alpha: 1), forState: .Disabled)
-                sendButton.setTitleColor(UIColor(red: 1/255, green: 122/255, blue: 255/255, alpha: 1), forState: .Normal)
-                sendButton.contentEdgeInsets = UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6)
-                sendButton.addTarget(self, action: "sendAction", forControlEvents: UIControlEvents.TouchUpInside)
-                toolBar.addSubview(sendButton)
-
-                // Auto Layout allows `sendButton` to change width, e.g., for localization.
-                textView.setTranslatesAutoresizingMaskIntoConstraints(false)
-                sendButton.setTranslatesAutoresizingMaskIntoConstraints(false)
-                toolBar.addConstraint(NSLayoutConstraint(item: textView, attribute: .Left, relatedBy: .Equal, toItem: toolBar, attribute: .Left, multiplier: 1, constant: 8))
-                toolBar.addConstraint(NSLayoutConstraint(item: textView, attribute: .Top, relatedBy: .Equal, toItem: toolBar, attribute: .Top, multiplier: 1, constant: 7.5))
-                toolBar.addConstraint(NSLayoutConstraint(item: textView, attribute: .Right, relatedBy: .Equal, toItem: sendButton, attribute: .Left, multiplier: 1, constant: -2))
-                toolBar.addConstraint(NSLayoutConstraint(item: textView, attribute: .Bottom, relatedBy: .Equal, toItem: toolBar, attribute: .Bottom, multiplier: 1, constant: -8))
-                toolBar.addConstraint(NSLayoutConstraint(item: sendButton, attribute: .Right, relatedBy: .Equal, toItem: toolBar, attribute: .Right, multiplier: 1, constant: 0))
-                toolBar.addConstraint(NSLayoutConstraint(item: sendButton, attribute: .Bottom, relatedBy: .Equal, toItem: toolBar, attribute: .Bottom, multiplier: 1, constant: -4.5))
-            }
-            return toolBar
-        }
+        return toolBar
     }
 
     override func canBecomeFirstResponder() -> Bool {
         return true
     }
 
+    func configure() {
+        toolBar.textView.delegate = self
+        toolBar.sendButton.addTarget(self, action: "sendAction", forControlEvents: UIControlEvents.TouchUpInside)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        configure()
 
         messages = [
             Message(incoming: true, text: "I really enjoyed programming with you! :-)", sentDate: NSDate(timeIntervalSinceNow: -60*60*24*2-60*60)),
@@ -156,7 +123,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     func textViewDidChange(textView: UITextView) {
         updateTextViewHeight()
-        sendButton.enabled = textView.hasText()
+        toolBar.sendButton.enabled = textView.hasText()
     }
 
     func keyboardWillShow(notification: NSNotification) {
@@ -205,9 +172,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 
     func updateTextViewHeight() {
-        let oldHeight = textView.frame.height
+        let oldHeight = toolBar.textView.frame.height
         let maxHeight = textViewMaxHeight.portrait
-        var newHeight = min(textView.sizeThatFits(CGSize(width: textView.frame.width, height: CGFloat.max)).height, maxHeight)
+        var newHeight = min(toolBar.textView.sizeThatFits(CGSize(width: toolBar.textView.frame.width, height: CGFloat.max)).height, maxHeight)
         #if arch(x86_64) || arch(arm64)
             newHeight = ceil(newHeight)
             #else
@@ -220,19 +187,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     func sendAction() {
         // Autocomplete text before sending #hack
-        textView.resignFirstResponder()
-        textView.becomeFirstResponder()
+        toolBar.textView.resignFirstResponder()
+        toolBar.textView.becomeFirstResponder()
 
-        messages.append(Message(incoming: false, text: textView.text, sentDate: NSDate()))
-        textView.text = nil
+        messages.append(Message(incoming: false, text: toolBar.textView.text, sentDate: NSDate()))
+        toolBar.textView.text = nil
         updateTextViewHeight()
-        sendButton.enabled = false
+        toolBar.sendButton.enabled = false
 
-        let lastSection = tableView.numberOfSections()
         tableView.beginUpdates()
-        tableView.insertSections(NSIndexSet(index: lastSection), withRowAnimation: .Automatic)
         tableView.insertRowsAtIndexPaths([
-            NSIndexPath(forRow: 0, inSection: lastSection),
+            NSIndexPath(forRow: messages.count - 1, inSection: 0),
             ], withRowAnimation: .Automatic)
         tableView.endUpdates()
         tableViewScrollToBottomAnimated(true)

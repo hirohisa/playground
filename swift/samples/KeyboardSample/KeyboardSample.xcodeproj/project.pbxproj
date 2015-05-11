@@ -16,6 +16,7 @@
 		65EF7EA61AFB0B5E006B9AE8 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EF7EA51AFB0B5E006B9AE8 /* KeyboardViewController.swift */; };
 		65EF7EA91AFB0B5E006B9AE8 /* CustomKeyBoard.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 65EF7EA11AFB0B5E006B9AE8 /* CustomKeyBoard.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		65EF7EAF1AFB161A006B9AE8 /* MessageBubbleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65EF7EAE1AFB161A006B9AE8 /* MessageBubbleCell.swift */; };
+		A1E9173A1B0120170078799A /* MessageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E917391B0120170078799A /* MessageBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		65EF7EA41AFB0B5E006B9AE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65EF7EA51AFB0B5E006B9AE8 /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		65EF7EAE1AFB161A006B9AE8 /* MessageBubbleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBubbleCell.swift; sourceTree = "<group>"; };
+		A1E917391B0120170078799A /* MessageBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,7 @@
 			children = (
 				65EF7E771AFB02AA006B9AE8 /* AppDelegate.swift */,
 				65EF7E791AFB02AA006B9AE8 /* ViewController.swift */,
+				A1E917391B0120170078799A /* MessageBar.swift */,
 				65EF7EAE1AFB161A006B9AE8 /* MessageBubbleCell.swift */,
 				65EF7E7B1AFB02AA006B9AE8 /* Main.storyboard */,
 				65EF7E7E1AFB02AA006B9AE8 /* Images.xcassets */,
@@ -298,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				65EF7E7A1AFB02AA006B9AE8 /* ViewController.swift in Sources */,
+				A1E9173A1B0120170078799A /* MessageBar.swift in Sources */,
 				65EF7E781AFB02AA006B9AE8 /* AppDelegate.swift in Sources */,
 				65EF7EAF1AFB161A006B9AE8 /* MessageBubbleCell.swift in Sources */,
 			);
@@ -534,6 +538,7 @@
 				65EF7E931AFB02AA006B9AE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		65EF7E941AFB02AA006B9AE8 /* Build configuration list for PBXNativeTarget "KeyboardSampleTests" */ = {
 			isa = XCConfigurationList;
@@ -542,6 +547,7 @@
 				65EF7E961AFB02AA006B9AE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		65EF7EAA1AFB0B5E006B9AE8 /* Build configuration list for PBXNativeTarget "CustomKeyBoard" */ = {
 			isa = XCConfigurationList;
@@ -550,6 +556,7 @@
 				65EF7EAC1AFB0B5E006B9AE8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
