@@ -175,21 +175,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let oldHeight = toolBar.textView.frame.height
         let maxHeight = textViewMaxHeight.portrait
         var newHeight = min(toolBar.textView.sizeThatFits(CGSize(width: toolBar.textView.frame.width, height: CGFloat.max)).height, maxHeight)
-        #if arch(x86_64) || arch(arm64)
-            newHeight = ceil(newHeight)
-            #else
-            newHeight = CGFloat(ceilf(newHeight.native))
-        #endif
         if newHeight != oldHeight {
             toolBar.frame.size.height = newHeight+8*2-0.5
         }
     }
 
     func sendAction() {
-        // Autocomplete text before sending #hack
-        toolBar.textView.resignFirstResponder()
-        toolBar.textView.becomeFirstResponder()
-
         messages.append(Message(incoming: false, text: toolBar.textView.text, sentDate: NSDate()))
         toolBar.textView.text = nil
         updateTextViewHeight()
@@ -201,6 +192,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             ], withRowAnimation: .Automatic)
         tableView.endUpdates()
         tableViewScrollToBottomAnimated(true)
+
+        toolBar.textView.resignFirstResponder()
     }
 
     func tableViewScrollToBottomAnimated(animated: Bool) {
