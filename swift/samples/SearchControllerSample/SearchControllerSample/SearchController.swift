@@ -10,7 +10,6 @@ import UIKit
 
 class SearchResultController: UITableViewController {
 
-    var source = [String]()
     var result = split("D,E,F,L,M,N", isSeparator: { $0 == "," })
 
     override func viewDidLoad() {
@@ -40,9 +39,19 @@ class SearchResultController: UITableViewController {
 
 }
 
-class SearchController: UITableViewController, UISearchBarDelegate {
+class SearchController: UITableViewController, UISearchBarDelegate, UISearchControllerDelegate {
 
-    var result: [String] = split("A,B,C,D,E,F,G,H,I,J,K,L,M,N", isSeparator: { $0 == "," })
+    var source = split("A,B,C,D,E,F,G,H,I,J,K,L,M,N", isSeparator: { $0 == "," })
+    var filtered = split("D,E,F,L,M,N", isSeparator: { $0 == "," })
+
+    var result: [String] {
+        if searchController.active {
+            return filtered
+        } else {
+            return source
+        }
+    }
+
     var searchController: UISearchController!
     let resultController = SearchResultController()
 
@@ -50,14 +59,15 @@ class SearchController: UITableViewController, UISearchBarDelegate {
         super.viewDidLoad()
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "reuseIdentifier")
 
-        resultController.source = result
-
-        searchController = UISearchController(searchResultsController: resultController)
+        searchController = UISearchController(searchResultsController: nil)
+        //searchController = UISearchController(searchResultsController: UINavigationController(rootViewController: resultController))
 
         let frame = navigationController!.navigationBar.frame
         searchController.searchBar.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
         searchController.searchBar.delegate = self
+        searchController.delegate = self
         searchController.hidesNavigationBarDuringPresentation = false
+        searchController.dimsBackgroundDuringPresentation = false
         navigationItem.titleView = searchController.searchBar
     }
 
@@ -76,12 +86,41 @@ class SearchController: UITableViewController, UISearchBarDelegate {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath) as! UITableViewCell
 
-        cell.textLabel?.text = result[indexPath.row]
-        
+        if indexPath.row < result.count {
+            cell.textLabel?.text = result[indexPath.row]
+        }
+
         return cell
     }
 
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        resultController.reloadData()
+    func reloadData() {
+        tableView.reloadData()
     }
+
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        reloadData()
+    }
+
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    }
+
+    func willPresentSearchController(searchController: UISearchController) {
+        println("will present")
+    }
+    func didPresentSearchController(searchController: UISearchController) {
+        println("did present")
+    }
+
+    func willDismissSearchController(searchController: UISearchController) {
+        println("will dismiss")
+    }
+
+    func didDismissSearchController(searchController: UISearchController) {
+        println("did dismiss")
+    }
+
+    func presentSearchController(searchController: UISearchController) {
+        println("present")
+    }
+
 }
