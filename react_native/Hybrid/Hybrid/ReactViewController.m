@@ -17,14 +17,15 @@
 @implementation ReactView
 
 - (void)awakeFromNib {
+    [super awakeFromNib];
 
     NSURL *URL = [NSURL URLWithString:@"http://localhost:8081/index.ios.bundle"];
     self.view = [[RCTRootView alloc] initWithBundleURL:URL
                                             moduleName:@"SimpleApp"
                                          launchOptions:nil];
-
+    self.view.frame = self.bounds;
+    [self addSubview:self.view];
 }
-
 
 @end
 

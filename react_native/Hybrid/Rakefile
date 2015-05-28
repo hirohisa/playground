@@ -9,5 +9,5 @@ end
 
 desc "execution task for run application"
 task :build do
-  sh './Pods/React/packager/packager.sh --root ./ReactComponent'
+  sh '(JS_DIR=`pwd`/ReactComponent; cd Pods/React; npm run start -- --root $JS_DIR)'
 end

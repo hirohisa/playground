@@ -22,3 +22,5 @@ class SimpleApp extends React.Component {
     )
   }
 }
+
+React.AppRegistry.registerComponent('SimpleApp', () => SimpleApp);

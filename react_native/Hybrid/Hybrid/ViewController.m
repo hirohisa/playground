@@ -35,7 +35,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    UIViewController *viewController = [[ReactViewController alloc] init];
+    UIViewController *viewController = [[ReactViewController alloc] initWithNibName:@"ReactViewController" bundle:nil];
     [self.navigationController pushViewController:viewController animated:YES];
 }
 
