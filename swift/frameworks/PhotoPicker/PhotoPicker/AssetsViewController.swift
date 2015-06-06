@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 extension PhotoPicker.AlbumViewController {
 
     class Cell: UICollectionViewCell {
@@ -23,7 +22,7 @@ extension PhotoPicker.AlbumViewController {
 
     class AssetsViewController: UICollectionViewController {
 
-        required override init() {
+        init() {
             let collectionViewLayout = UICollectionViewFlowLayout()
             super.init(collectionViewLayout: collectionViewLayout)
         }
