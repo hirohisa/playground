@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Union
 
 class ViewController: UIViewController {
 
@@ -37,7 +38,7 @@ extension ViewController: UINavigationControllerDelegate {
 
     func navigationController(navigationController: UINavigationController, animationControllerForOperation operation: UINavigationControllerOperation, fromViewController fromVC: UIViewController, toViewController toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
 
-        return nil
+        return Union.animate()
     }
 
 

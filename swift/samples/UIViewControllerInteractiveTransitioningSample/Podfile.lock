@@ -1,0 +1,10 @@
+PODS:
+  - Union (0.3.0)
+
+DEPENDENCIES:
+  - Union
+
+SPEC CHECKSUMS:
+  Union: b1d490a1bc8fbb9a9e6d821487783fbd73a40a44
+
+COCOAPODS: 0.37.1
