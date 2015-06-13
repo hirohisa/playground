@@ -9,7 +9,3 @@ sample codes or module in development
 ### in own repository
 
 - [AnimationTest](swift/ui/AnimationTest)
-
-### in development
-
-- [GridView](swift/ui/GridView)
