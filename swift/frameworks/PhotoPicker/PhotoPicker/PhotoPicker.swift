@@ -35,6 +35,9 @@ public class PhotoPicker {
         if let source = source as? ImagePickerControllerDelegate {
             pickerController.delegate = source
         }
+        if let source = source as? ImagePickerControllerDataSource {
+            pickerController.dataSource = source
+        }
         source.presentViewController(pickerController, animated: true) {
         }
     }

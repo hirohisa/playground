@@ -9,6 +9,8 @@
 import UIKit
 import Photos
 
+public let reuseIdentifier = "reuseIdentifier"
+
 public protocol ImagePickerControllerDelegate: UINavigationControllerDelegate {
     func imagePickerController(picker: ImagePickerController, didFinishPickingAssets assets: [PHAsset])
     func imagePickerControllerDidCancel(picker: ImagePickerController)
@@ -20,9 +22,9 @@ public protocol ImagePickerControllerDataSource: class {
     func imagePickerController(picker: ImagePickerController, configureCell cell: UITableViewCell, collection: PHAssetCollection)
 
     // Asset's configuration
-    var assetNib: UINib { get } // UICollectionViewCell
-    func collectionViewLayout(picker: ImagePickerController) -> UICollectionViewLayout
-    func imagePickerController(picker: ImagePickerController, configureCell cell: UICollectionViewCell, asset: PHAsset)
+    func createAssetsViewController() -> AssetsViewController
+    func imagePickerController(picker: ImagePickerController, configureCollectionView collectionView: UICollectionView)
+    func imagePickerController(picker: ImagePickerController, collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath, asset: PHAsset) -> UICollectionViewCell
 }
 
 public class ImagePickerController: UINavigationController {
@@ -54,6 +56,11 @@ public class ImagePickerController: UINavigationController {
         }
     }
     public unowned(unsafe) var dataSource: ImagePickerControllerDataSource
+
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = UIColor.whiteColor()
+    }
 }
 
 extension AlbumViewController: ImagePickerControllerDataSource {
@@ -68,29 +75,32 @@ extension AlbumViewController: ImagePickerControllerDataSource {
         cell.accessoryType = .DisclosureIndicator
     }
 
-    var assetNib: UINib {
-        let bundle = NSBundle(forClass: AssetCell.self)
-        return UINib(nibName: "AssetCell", bundle: bundle)
+    func createAssetsViewController() -> AssetsViewController {
+        return AssetsViewController(nibName: "AssetsViewController", bundle: NSBundle(forClass: AssetsViewController.self))
     }
 
-    func collectionViewLayout(picker: ImagePickerController) -> UICollectionViewLayout {
+    func imagePickerController(picker: ImagePickerController, configureCollectionView collectionView: UICollectionView) {
+        collectionView.registerNib(UINib(nibName: "AssetCell", bundle: NSBundle(forClass: AssetCell.self)), forCellWithReuseIdentifier: reuseIdentifier)
+
         let collectionViewLayout = UICollectionViewFlowLayout()
         let margin: CGFloat = 10
         let length = (view.frame.width - margin * 4) / 3
         collectionViewLayout.itemSize = CGSize(width: length, height: length)
         collectionViewLayout.minimumInteritemSpacing = margin
         collectionViewLayout.minimumLineSpacing = margin
-        return collectionViewLayout
+        collectionView.collectionViewLayout = collectionViewLayout
     }
 
-    func imagePickerController(picker: ImagePickerController, configureCell cell: UICollectionViewCell, asset: PHAsset) {
-        let cell = cell as! AssetCell
+    func imagePickerController(picker: ImagePickerController, collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath, asset: PHAsset) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! AssetCell
 
         let options = PHImageRequestOptions()
         options.deliveryMode = .HighQualityFormat
         PHImageManager.defaultManager().requestImageForAsset(asset, targetSize: CGSize(width: asset.pixelWidth, height: asset.pixelHeight), contentMode: .AspectFill, options: options) { image, info in
             cell.imageView.image = image
         }
+
+        return cell
     }
 
 }

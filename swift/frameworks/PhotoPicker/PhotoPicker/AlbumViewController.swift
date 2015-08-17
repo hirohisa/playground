@@ -25,7 +25,7 @@ class AlbumViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath) as! UITableViewCell
 
         let collection = collections[indexPath.row]
 
@@ -38,7 +38,8 @@ class AlbumViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let collection = collections[indexPath.row]
 
-        let viewController = AssetsViewController(nibName: "AssetsViewController", bundle: NSBundle(forClass: AssetsViewController.self))
+        let picker = navigationController as! ImagePickerController
+        let viewController = picker.dataSource.createAssetsViewController()
         viewController.collection = collection
         navigationController?.pushViewController(viewController, animated: true)
     }
@@ -66,10 +67,10 @@ extension AlbumViewController {
 
         tableView.estimatedRowHeight = 60
 
-        let picker = navigationController as! ImagePickerController
-        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
-
+        tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.tableFooterView = UIView()
+
+        view.backgroundColor = navigationController?.view.backgroundColor
     }
 
     func fetchCollections() {

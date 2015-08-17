@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AssetsViewController" customModule="PhotoPicker">
+            <connections>
+                <outlet property="collectionView" destination="TP2-u9-Jge" id="Qem-jA-A1P"/>
+                <outlet property="submitButton" destination="dnp-sf-WUp" id="QLp-7a-Qnf"/>
+                <outlet property="view" destination="iN0-l3-epB" id="yzN-6n-ZJQ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="TP2-u9-Jge">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="QLB-7M-tYV">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="XJ6-4e-aPd"/>
+                        <outlet property="delegate" destination="-1" id="v7C-YA-E8r"/>
+                    </connections>
+                </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnp-sf-WUp">
+                    <rect key="frame" x="0.0" y="513" width="375" height="110"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="110" id="axh-E8-3na"/>
+                    </constraints>
+                    <state key="normal" title="custom button">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="TP2-u9-Jge" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="94g-C5-jNY"/>
+                <constraint firstAttribute="trailing" secondItem="TP2-u9-Jge" secondAttribute="trailing" id="F4Q-Gs-qPJ"/>
+                <constraint firstAttribute="bottom" secondItem="TP2-u9-Jge" secondAttribute="bottom" id="JcR-vU-TkR"/>
+                <constraint firstAttribute="bottom" secondItem="dnp-sf-WUp" secondAttribute="bottom" id="cDN-Yh-Y4O"/>
+                <constraint firstItem="TP2-u9-Jge" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="cYX-7g-6s2"/>
+                <constraint firstAttribute="trailing" secondItem="dnp-sf-WUp" secondAttribute="trailing" id="kPN-ag-QRB"/>
+                <constraint firstItem="dnp-sf-WUp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="qi5-dF-fOy"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+            <point key="canvasLocation" x="228.5" y="151.5"/>
+        </view>
+    </objects>
+</document>

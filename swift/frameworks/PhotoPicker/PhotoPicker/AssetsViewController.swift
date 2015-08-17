@@ -9,14 +9,16 @@
 import UIKit
 import Photos
 
-class AssetsViewController: UIViewController {
+public class AssetsViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var submitButton: UIButton!
 
     var assets: [PHAsset] = [] {
         didSet {
-            collectionView.reloadData()
+            if isViewLoaded() {
+                collectionView.reloadData()
+            }
         }
     }
     var collection: PHAssetCollection? {
@@ -29,18 +31,15 @@ class AssetsViewController: UIViewController {
 
     var selectedAssets: [PHAsset] = []
 
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
 
         configure()
     }
 
     func configure() {
-        collectionView.backgroundColor = UIColor.whiteColor()
-
         let picker = navigationController as! ImagePickerController
-        collectionView.collectionViewLayout = picker.dataSource.collectionViewLayout(picker)
-        collectionView.registerNib(picker.dataSource.assetNib, forCellWithReuseIdentifier: "cell")
+        picker.dataSource.imagePickerController(picker, configureCollectionView: collectionView)
 
         submitButton.addTarget(self, action: "submit", forControlEvents: .TouchUpInside)
     }
@@ -68,7 +67,7 @@ class AssetsViewController: UIViewController {
 
 extension AssetsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 
         let asset = assets[indexPath.item]
         let result = selectedAssets.filter{ $0 == asset }
@@ -80,25 +79,22 @@ extension AssetsViewController: UICollectionViewDelegate, UICollectionViewDataSo
         collectionView.reloadData()
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! AssetCell
         let asset = assets[indexPath.item]
 
-
         let picker = navigationController as! ImagePickerController
-        picker.dataSource.imagePickerController(picker, configureCell: cell, asset: asset)
-
+        let cell = picker.dataSource.imagePickerController(picker, collectionView: collectionView, cellForItemAtIndexPath: indexPath, asset: asset)
         cell.selected = !selectedAssets.filter{ $0 == asset }.isEmpty ? true:false
 
         return cell
     }
 
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
 
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    public func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return assets.count
     }
 }
