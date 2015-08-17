@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		650EE03C1B81C6D5008AFB5A /* AssetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 650EE03A1B81C6D5008AFB5A /* AssetsViewController.xib */; };
-		650EE03E1B81CACB008AFB5A /* Photos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 650EE03D1B81CACB008AFB5A /* Photos.framework */; };
 		6597C02D1B819E5B00A0E558 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6597C02C1B819E5B00A0E558 /* ImagePickerController.swift */; };
 		659BF38B1B81B28F00793571 /* AssetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 659BF3891B81B28F00793571 /* AssetCell.swift */; };
 		659BF38C1B81B28F00793571 /* AssetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 659BF38A1B81B28F00793571 /* AssetCell.xib */; };
@@ -32,7 +31,6 @@
 
 /* Begin PBXFileReference section */
 		650EE03A1B81C6D5008AFB5A /* AssetsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetsViewController.xib; sourceTree = "<group>"; };
-		650EE03D1B81CACB008AFB5A /* Photos.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Photos.framework; path = System/Library/Frameworks/Photos.framework; sourceTree = SDKROOT; };
 		6597C02C1B819E5B00A0E558 /* ImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		659BF3891B81B28F00793571 /* AssetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetCell.swift; sourceTree = "<group>"; };
 		659BF38A1B81B28F00793571 /* AssetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetCell.xib; sourceTree = "<group>"; };
@@ -52,7 +50,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				650EE03E1B81CACB008AFB5A /* Photos.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,7 +67,6 @@
 		65F7BF5C1AD3C90800B8F712 = {
 			isa = PBXGroup;
 			children = (
-				650EE03D1B81CACB008AFB5A /* Photos.framework */,
 				65F7BF681AD3C90800B8F712 /* PhotoPicker */,
 				65F7BF751AD3C90800B8F712 /* PhotoPickerTests */,
 				65F7BF671AD3C90800B8F712 /* Products */,
