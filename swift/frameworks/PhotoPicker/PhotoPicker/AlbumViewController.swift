@@ -28,7 +28,9 @@ class AlbumViewController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
 
         let collection = collections[indexPath.row]
-        cell.textLabel?.text = collection.localizedTitle
+
+        let picker = navigationController as! ImagePickerController
+        picker.dataSource.imagePickerController(picker, configureCell: cell, collection: collection)
 
         return cell
     }
@@ -48,6 +50,12 @@ class AlbumViewController: UITableViewController {
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return collections.count
     }
+
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let picker = navigationController as! ImagePickerController
+        return picker.dataSource.heightForRowInAlbum(picker)
+    }
+
 }
 
 extension AlbumViewController {
@@ -56,7 +64,12 @@ extension AlbumViewController {
         let leftBarButtonItem = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: "dismiss")
         navigationItem.leftBarButtonItem = leftBarButtonItem
 
+        tableView.estimatedRowHeight = 60
+
+        let picker = navigationController as! ImagePickerController
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
+
+        tableView.tableFooterView = UIView()
     }
 
     func fetchCollections() {
