@@ -11,7 +11,7 @@ import UIKit
 
 public class PhotoPicker {
 
-    let pickerController = ImagePickerController()
+    public let pickerController = ImagePickerController()
     public init() {
     }
 
@@ -32,7 +32,11 @@ public class PhotoPicker {
     }
 
     func showAlbum(#source: UIViewController) {
+        if let source = source as? ImagePickerControllerDelegate {
+            pickerController.delegate = source
+        }
         source.presentViewController(pickerController, animated: true) {
         }
     }
+
 }

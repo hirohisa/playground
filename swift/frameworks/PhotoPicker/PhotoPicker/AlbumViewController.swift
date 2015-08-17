@@ -36,7 +36,8 @@ class AlbumViewController: UITableViewController {
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let collection = collections[indexPath.row]
 
-        let viewController = AssetsViewController(collection: collection)
+        let viewController = AssetsViewController(nibName: "AssetsViewController", bundle: NSBundle(forClass: AssetsViewController.self))
+        viewController.collection = collection
         navigationController?.pushViewController(viewController, animated: true)
     }
 

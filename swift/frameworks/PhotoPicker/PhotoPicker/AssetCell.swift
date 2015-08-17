@@ -11,9 +11,19 @@ import UIKit
 class AssetCell: UICollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var selectedMaskView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
+    override var selected: Bool {
+        didSet {
+            updateData()
+        }
+    }
+
+    func updateData() {
+        selectedMaskView.hidden = !selected
+    }
 }

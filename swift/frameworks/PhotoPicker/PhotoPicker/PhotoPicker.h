@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Photos/Photos.h>
 
 //! Project version number for PhotoPicker.
 FOUNDATION_EXPORT double PhotoPickerVersionNumber;

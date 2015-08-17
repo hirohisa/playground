@@ -31,3 +31,15 @@ class ViewController: UIViewController {
     }
 }
 
+extension ViewController: ImagePickerControllerDelegate {
+
+    func imagePickerController(picker: ImagePickerController, didFinishPickingAssets assets: [PHAsset]) {
+        println(__FUNCTION__)
+        println(assets)
+    }
+
+    func imagePickerControllerDidCancel(picker: ImagePickerController) {
+        println(__FUNCTION__)
+    }
+}
+

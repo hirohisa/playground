@@ -7,17 +7,20 @@
 //
 
 import UIKit
+import Photos
 
-protocol ImagePickerControllerDelegate: class, UINavigationControllerDelegate {
+public protocol ImagePickerControllerDelegate: UINavigationControllerDelegate {
+    func imagePickerController(picker: ImagePickerController, didFinishPickingAssets assets: [PHAsset])
+    func imagePickerControllerDidCancel(picker: ImagePickerController)
 }
 
-class ImagePickerController: UINavigationController {
+public class ImagePickerController: UINavigationController {
 
     init() {
         super.init(rootViewController: AlbumViewController())
     }
 
-    required init(coder aDecoder: NSCoder) {
+    public required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -28,7 +31,7 @@ class ImagePickerController: UINavigationController {
 
     private weak var __delegate: ImagePickerControllerDelegate?
 
-    override var delegate: UINavigationControllerDelegate? {
+    public override var delegate: UINavigationControllerDelegate? {
         get {
             return __delegate
         }

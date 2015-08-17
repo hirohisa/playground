@@ -9,28 +9,39 @@
 import UIKit
 import Photos
 
-class AssetsViewController: UICollectionViewController {
+class AssetsViewController: UIViewController {
 
-    init(collection: PHAssetCollection) {
-        super.init(collectionViewLayout: UICollectionViewFlowLayout())
-        fetchAssets(collection)
-    }
-
-    required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var submitButton: UIButton!
 
     var assets: [PHAsset] = [] {
         didSet {
             reloadData()
         }
     }
+    var collection: PHAssetCollection? {
+        didSet {
+            if let collection = collection {
+                fetchAssets(collection)
+            }
+        }
+    }
+
+    var selectedAssets: [PHAsset] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        collectionView?.backgroundColor = UIColor.whiteColor()
+
+        configure()
+    }
+
+    func configure() {
+        collectionView.collectionViewLayout = collectionViewLayout()
+        collectionView.backgroundColor = UIColor.whiteColor()
         let bundle = NSBundle(forClass: AssetCell.self)
-        collectionView?.registerNib(UINib(nibName: "AssetCell", bundle: bundle), forCellWithReuseIdentifier: "cell")
+        collectionView.registerNib(UINib(nibName: "AssetCell", bundle: bundle), forCellWithReuseIdentifier: "cell")
+
+        submitButton.addTarget(self, action: "submit", forControlEvents: .TouchUpInside)
     }
 
     func fetchAssets(collection: PHAssetCollection) {
@@ -46,11 +57,44 @@ class AssetsViewController: UICollectionViewController {
         self.assets = assets
     }
 
+    func submit() {
+        if let navigationController = navigationController as? ImagePickerController, let delegate = navigationController.delegate as? ImagePickerControllerDelegate {
+            delegate.imagePickerController(navigationController, didFinishPickingAssets: selectedAssets)
+            dismissViewControllerAnimated(true, completion: nil)
+        }
+    }
+
     func reloadData() {
         collectionView?.reloadData()
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionViewLayout() -> UICollectionViewLayout {
+        let collectionLayout = UICollectionViewFlowLayout()
+        let margin: CGFloat = 10
+        let length = (view.frame.width - margin * 4) / 3
+        collectionLayout.itemSize = CGSize(width: length, height: length)
+        collectionLayout.minimumInteritemSpacing = margin
+        collectionLayout.minimumLineSpacing = margin
+
+        return collectionLayout
+    }
+}
+
+extension AssetsViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+
+        let asset = assets[indexPath.item]
+        let result = selectedAssets.filter{ $0 == asset }
+        if result.isEmpty {
+            selectedAssets.append(asset)
+        } else {
+            selectedAssets = selectedAssets.filter{ $0 != asset }
+        }
+        collectionView.reloadData()
+    }
+
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! AssetCell
 
         let asset = assets[indexPath.item]
@@ -61,14 +105,16 @@ class AssetsViewController: UICollectionViewController {
             cell.imageView.image = image
         }
 
+        cell.selected = !selectedAssets.filter{ $0 == asset }.isEmpty ? true:false
+
         return cell
     }
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
+    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         return 1
     }
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return assets.count
     }
 }
