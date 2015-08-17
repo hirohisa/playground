@@ -10,8 +10,6 @@
 		655CA09C1B8208FB00CC4D03 /* AssetsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655CA09B1B8208FB00CC4D03 /* AssetsViewController.xib */; };
 		655CA09F1B8209FD00CC4D03 /* AssetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655CA09D1B8209FD00CC4D03 /* AssetCell.swift */; };
 		655CA0A01B8209FD00CC4D03 /* AssetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 655CA09E1B8209FD00CC4D03 /* AssetCell.xib */; };
-		6597C0271B8192DB00A0E558 /* PhotoPicker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6597C0261B8192DB00A0E558 /* PhotoPicker.framework */; };
-		6597C0281B8192DB00A0E558 /* PhotoPicker.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6597C0261B8192DB00A0E558 /* PhotoPicker.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65F7BF911AD3CCD000B8F712 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F7BF901AD3CCD000B8F712 /* AppDelegate.swift */; };
 		65F7BF931AD3CCD000B8F712 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65F7BF921AD3CCD000B8F712 /* ViewController.swift */; };
 		65F7BF961AD3CCD000B8F712 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65F7BF941AD3CCD000B8F712 /* Main.storyboard */; };
@@ -30,25 +28,10 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		6597C0291B8192DB00A0E558 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				6597C0281B8192DB00A0E558 /* PhotoPicker.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		655CA09B1B8208FB00CC4D03 /* AssetsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetsViewController.xib; sourceTree = "<group>"; };
 		655CA09D1B8209FD00CC4D03 /* AssetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AssetCell.swift; sourceTree = "<group>"; };
 		655CA09E1B8209FD00CC4D03 /* AssetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AssetCell.xib; sourceTree = "<group>"; };
-		6597C0261B8192DB00A0E558 /* PhotoPicker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = PhotoPicker.framework; path = "/Users/JP11339/Library/Developer/Xcode/DerivedData/PhotoPicker-gaknqfifvpumgwafudjqupqocgjp/Build/Products/Debug-iphoneos/PhotoPicker.framework"; sourceTree = "<absolute>"; };
 		65F7BF8B1AD3CCD000B8F712 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65F7BF8F1AD3CCD000B8F712 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65F7BF901AD3CCD000B8F712 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -66,7 +49,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6597C0271B8192DB00A0E558 /* PhotoPicker.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,7 +65,6 @@
 		65F7BF821AD3CCD000B8F712 = {
 			isa = PBXGroup;
 			children = (
-				6597C0261B8192DB00A0E558 /* PhotoPicker.framework */,
 				65F7BF8D1AD3CCD000B8F712 /* Example */,
 				65F7BFA31AD3CCD000B8F712 /* ExampleTests */,
 				65F7BF8C1AD3CCD000B8F712 /* Products */,
@@ -150,7 +131,6 @@
 				65F7BF871AD3CCD000B8F712 /* Sources */,
 				65F7BF881AD3CCD000B8F712 /* Frameworks */,
 				65F7BF891AD3CCD000B8F712 /* Resources */,
-				6597C0291B8192DB00A0E558 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
