@@ -9,25 +9,47 @@
 import UIKit
 import Photos
 
-extension PhotoPicker {
+class AlbumViewController: UITableViewController {
 
-    class AlbumViewController: UITableViewController {
-
-        var collections: [PHAssetCollection] = [PHAssetCollection]() {
-            didSet {
-                tableView.reloadData()
-            }
+    var collections: [PHAssetCollection] = [PHAssetCollection]() {
+        didSet {
+            tableView.reloadData()
         }
+    }
 
-        override func viewDidLoad() {
-            super.viewDidLoad()
+    override func viewDidLoad() {
+        super.viewDidLoad()
 
-            configure()
-        }
+        configure()
+        fetchCollections()
+    }
+
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! UITableViewCell
+
+        let collection = collections[indexPath.row]
+        cell.textLabel?.text = collection.localizedTitle
+
+        return cell
+    }
+
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let collection = collections[indexPath.row]
+
+        let viewController = AssetsViewController(collection: collection)
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return collections.count
     }
 }
 
-extension PhotoPicker.AlbumViewController {
+extension AlbumViewController {
 
     func configure() {
         let leftBarButtonItem = UIBarButtonItem(title: "Close", style: .Plain, target: self, action: "dismiss")
@@ -36,18 +58,17 @@ extension PhotoPicker.AlbumViewController {
         tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
 
-    func getCollectionList() {
+    func fetchCollections() {
         let result = PHCollectionList.fetchTopLevelUserCollectionsWithOptions(nil)
 
         var collections = [PHAssetCollection]()
-        result.enumerateObjectsUsingBlock { obj, index, stop in
+
+        result.enumerateObjectsUsingBlock { obj, _, _ in
             if let collection = obj as? PHAssetCollection {
                 collections.append(collection)
             }
-            if stop.memory {
-                self.collections = collections
-            }
         }
+        self.collections = collections
     }
 
     func dismiss() {

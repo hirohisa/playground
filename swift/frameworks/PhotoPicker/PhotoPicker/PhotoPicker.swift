@@ -11,7 +11,7 @@ import UIKit
 
 public class PhotoPicker {
 
-    let album = AlbumViewController()
+    let pickerController = ImagePickerController()
     public init() {
     }
 
@@ -30,23 +30,9 @@ public class PhotoPicker {
 
         source.presentViewController(controller, animated: true) { _ in }
     }
-}
-
-
-// MARK: Camera
-
-extension PhotoPicker {
-}
-
-// MARK: Album
-
-extension PhotoPicker {
 
     func showAlbum(#source: UIViewController) {
-        let presentViewController = UINavigationController(rootViewController: album)
-
-        source.presentViewController(presentViewController, animated: true) {
+        source.presentViewController(pickerController, animated: true) {
         }
     }
-
 }
