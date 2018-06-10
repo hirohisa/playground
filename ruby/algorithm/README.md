@@ -19,8 +19,25 @@
 | block merge sort | n log n |  n log n | n log n | 1 |
 | Timsort | n |  n log n | n log n | n |
 
+## Hash
+
+**Hash table**
+
+| algorithm | average | worse |
+|-----------|---------|-------|
+| Space | n | n |
+| Search | 1 | n |
+| Insert | 1 | n |
+| Delete | 1 | n |
 
 
 ### Reference
 
 https://en.wikipedia.org/wiki/Sorting_algorithm
+
+### memo
+
+- https://en.wikipedia.org/wiki/Hash_function
+- https://en.wikipedia.org/wiki/Radix_tree
+- https://en.wikipedia.org/wiki/Binary_tree
+- https://en.wikipedia.org/wiki/Blockchain
