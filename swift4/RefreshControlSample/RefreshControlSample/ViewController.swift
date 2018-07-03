@@ -11,13 +11,17 @@ import UIKit
 protocol Refreshable {
     typealias Block = () -> Void
 
-    var onRefresh: Block? { get }
-    var onLoadMore: Block? { get }
-    var isLoadingMore: Bool { get set }
-    var observation: NSKeyValueObservation? { get set }
-    func isScrollingOverBottom() -> Bool
     func stopAnimating()
 
+    // refresh
+    var onRefresh: Block? { get }
+    func refresh()
+
+    // load more
+    var onLoadMore: Block? { get }
+    func isScrollingOverBottom() -> Bool
+    var isLoadingMore: Bool { get set }
+    var observation: NSKeyValueObservation? { get set }
     mutating func loadMore()
 }
 
