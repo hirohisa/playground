@@ -8,14 +8,57 @@
 
 import UIKit
 
-class RefreshableTableView: UITableView {
+protocol Refreshable {
     typealias Block = () -> Void
 
+    var onRefresh: Block? { get }
+    var onLoadMore: Block? { get }
+    var isLoadingMore: Bool { get set }
+    var observation: NSKeyValueObservation? { get set }
+    func isScrollingOverBottom() -> Bool
+    func stopAnimating()
+
+    mutating func loadMore()
+}
+
+extension Refreshable where Self: UIScrollView {
+
+    func refresh() {
+        guard let onRefresh = onRefresh else { return }
+        onRefresh()
+    }
+
+    mutating func loadMore() {
+        guard let onLoadMore = onLoadMore, !isLoadingMore else { return }
+        isLoadingMore = true
+        onLoadMore()
+    }
+
+    func isScrollingOverBottom() -> Bool {
+        if contentSize.height == 0 || frame.size.height == 0 {
+            return false
+        }
+
+        let buffer: CGFloat = 0
+        return contentSize.height <= contentOffset.y + frame.size.height + buffer
+    }
+
+    func stopAnimating() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
+            guard var weakSelf = self else { return }
+            weakSelf.isLoadingMore = false
+            weakSelf.refreshControl?.endRefreshing()
+        })
+    }
+
+}
+
+class RefreshableTableView: UITableView, Refreshable {
     var onRefresh: Block?
     var onLoadMore: Block?
+    var isLoadingMore = false
 
-    private var isLoadingMore = false
-    private var observation: NSKeyValueObservation?
+    var observation: NSKeyValueObservation?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,7 +71,7 @@ class RefreshableTableView: UITableView {
 
         observation?.invalidate()
         observation = observe(\.contentOffset) { [weak self] (_, change) in
-            guard let weakSelf = self else { return }
+            guard var weakSelf = self else { return }
 
             if weakSelf.isScrollingOverBottom() {
                 weakSelf.loadMore()
@@ -39,28 +82,6 @@ class RefreshableTableView: UITableView {
     @objc private func refresh(sender: UIRefreshControl) {
         guard let onRefresh = onRefresh else { return }
         onRefresh()
-    }
-
-    func stopAnimating() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            self.isLoadingMore = false
-            self.refreshControl?.endRefreshing()
-        })
-    }
-
-    private func isScrollingOverBottom() -> Bool {
-        if contentSize.height == 0 || frame.size.height == 0 {
-            return false
-        }
-
-        let buffer: CGFloat = 0
-        return contentSize.height <= contentOffset.y + frame.size.height + buffer
-    }
-
-    private func loadMore() {
-        guard let onLoadMore = onLoadMore, !isLoadingMore else { return }
-        isLoadingMore = true
-        onLoadMore()
     }
 
     deinit {
