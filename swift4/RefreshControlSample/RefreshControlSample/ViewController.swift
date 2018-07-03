@@ -49,6 +49,10 @@ class RefreshableTableView: UITableView {
     }
 
     private func isScrollingOverBottom() -> Bool {
+        if contentSize.height == 0 || frame.size.height == 0 {
+            return false
+        }
+
         let buffer: CGFloat = 0
         return contentSize.height <= contentOffset.y + frame.size.height + buffer
     }
