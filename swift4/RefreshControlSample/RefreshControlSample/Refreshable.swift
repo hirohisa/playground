@@ -20,73 +20,37 @@ protocol RefreshHeaderView {
     func load(state: RefreshState)
 }
 
-class RefreshView: UIView, RefreshHeaderView {
-
-    let indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        addSubview(indicator)
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-
-        indicator.center = CGPoint(x: frame.width / 2, y: frame.height / 2)
-    }
-
-    func load(state: RefreshState) {
-        switch state {
-        case .default, .isLoadingMore:
-            indicator.stopAnimating()
-        case .isRefreshing:
-            indicator.startAnimating()
-        default:
-            break
-        }
-    }
-}
-
 protocol Refreshable {
     typealias Block = () -> Void
 
     var state: RefreshState { get set }
-    var observation: NSKeyValueObservation? { get set }
-    var refreshHeaderHeight: CGFloat { get }
-    var defaultContentInsets: UIEdgeInsets { get }
 
     var refreshHeaderView: UIView { get }
-
-    func setUp()
     func stopAnimating()
 
     // refresh
     var onRefresh: Block? { get }
     // load more
     var onLoadMore: Block? { get }
+
+    func observeScrolling()
+    func observeDragging()
 }
+
+private var refreshableDefaultContentInset = 0
 
 extension Refreshable where Self: UIScrollView {
 
-    var defaultContentInsets: UIEdgeInsets { return .zero }
-    var refreshHeaderHeight: CGFloat { return 52 }
-
-    func setUp() {
-        var varSelf = self
-
-        refreshHeaderView.translatesAutoresizingMaskIntoConstraints = true
-        refreshHeaderView.frame = CGRect(x: 0, y: -refreshHeaderHeight, width: frame.width, height: refreshHeaderHeight)
-        addSubview(refreshHeaderView)
-
-
-        observation?.invalidate()
-        varSelf.observation = observe(\.contentOffset) { [weak self] (_, change) in
-            guard let weakSelf = self else { return }
-            weakSelf.observeScrolling()
+    var defaultContentInset: UIEdgeInsets {
+        get {
+            return objc_getAssociatedObject(self, &refreshableDefaultContentInset) as? UIEdgeInsets ?? .zero
+        }
+        set {
+            objc_setAssociatedObject(self, &refreshableDefaultContentInset, newValue, objc_AssociationPolicy(rawValue: 3)!)
         }
     }
 
-    private func observeScrolling() {
+    func observeScrolling() {
         switch state {
         case .default:
             if isScrollingForRefreshing() {
@@ -108,9 +72,25 @@ extension Refreshable where Self: UIScrollView {
         }
     }
 
+    func observeDragging() {
+        switch state {
+        case .isRefreshing:
+            if !isDragging {
+                var varSelf = self
+                varSelf.defaultContentInset = contentInset
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.contentInset = UIEdgeInsets(top: self.refreshHeaderView.frame.height, left: 0, bottom: 0, right: 0)
+                }, completion: { _ in })
+            }
+        default:
+            print(state)
+            break
+        }
+    }
+
     // refresh
     private func isScrollingForRefreshing() -> Bool {
-        if contentOffset.y < -1 * refreshHeaderHeight {
+        if contentOffset.y < -1 * refreshHeaderView.frame.height {
             return true
         }
         return false
@@ -123,9 +103,6 @@ extension Refreshable where Self: UIScrollView {
         if let refreshHeaderView = refreshHeaderView as? RefreshHeaderView {
             refreshHeaderView.load(state: .isRefreshing)
         }
-        UIView.animate(withDuration: 0.3, animations: {
-            varSelf.contentInset = UIEdgeInsets(top: varSelf.refreshHeaderHeight, left: 0, bottom: 0, right: 0)
-        })
         onRefresh()
     }
 
@@ -150,6 +127,9 @@ extension Refreshable where Self: UIScrollView {
         switch state {
         case .isRefreshing:
             varSelf.state = .didRefreshing
+            if !isDragging {
+                stopRefreshing()
+            }
         case .isLoadingMore:
             varSelf.state = .didLoadingMore
         default:
@@ -160,10 +140,11 @@ extension Refreshable where Self: UIScrollView {
     private func stopRefreshing() {
         var varSelf = self
         varSelf.state = .stopRefreshing
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
             guard var weakSelf = self else { return }
-            UIView.animate(withDuration: 0.3, animations: {
-                weakSelf.contentInset = weakSelf.defaultContentInsets
+
+            UIView.animate(withDuration: 0.25, animations: {
+                weakSelf.contentInset = weakSelf.defaultContentInset
             }, completion: { _ in
                 weakSelf.state = .default
                 if let refreshHeaderView = weakSelf.refreshHeaderView as? RefreshHeaderView {
@@ -174,7 +155,7 @@ extension Refreshable where Self: UIScrollView {
     }
 
     private func stopLoadingMore() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
             guard var weakSelf = self else { return }
             weakSelf.state = .default
         })
@@ -182,22 +163,19 @@ extension Refreshable where Self: UIScrollView {
 }
 
 class RefreshableTableView: UITableView, Refreshable {
-    var state: RefreshState = .default {
-        didSet {
-            if state == .default {
-                reloadData()
-            }
-        }
-    }
+    var state: RefreshState = .default
     var onRefresh: Block?
     var onLoadMore: Block?
-    var observation: NSKeyValueObservation?
 
     var refreshHeaderView: UIView = RefreshView(frame: .zero)
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        setUp()
+
+        refreshHeaderView.translatesAutoresizingMaskIntoConstraints = true
+        let height: CGFloat = 52
+        refreshHeaderView.frame = CGRect(x: 0, y: -height, width: frame.width, height: height)
+        addSubview(refreshHeaderView)
     }
 
     override func layoutSubviews() {
@@ -206,10 +184,6 @@ class RefreshableTableView: UITableView, Refreshable {
             let aFrame = refreshHeaderView.frame
             refreshHeaderView.frame = CGRect(x: aFrame.minX, y: aFrame.minY, width: frame.width, height: aFrame.height)
         }
-    }
-
-    deinit {
-        observation?.invalidate()
     }
 
 }

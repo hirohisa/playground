@@ -8,16 +8,21 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: PullToRefreshViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableView: RefreshableTableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.refreshHeaderView.backgroundColor = UIColor.blue
+
         tableView.onRefresh = {
             print("refreshing")
-            self.tableView.stopAnimating()
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                self.tableView.stopAnimating()
+            })
         }
 
         tableView.onLoadMore = {
