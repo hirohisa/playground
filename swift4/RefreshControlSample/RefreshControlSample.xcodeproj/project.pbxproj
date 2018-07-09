@@ -15,6 +15,7 @@
 		A18EB64020EA4086001821AF /* RefreshControlSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18EB63F20EA4086001821AF /* RefreshControlSampleTests.swift */; };
 		A18EB64B20EA4086001821AF /* RefreshControlSampleUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A18EB64A20EA4086001821AF /* RefreshControlSampleUITests.swift */; };
 		A1F461E720EFDE0700E26765 /* Refreshable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F461E620EFDE0700E26765 /* Refreshable.swift */; };
+		A1F461F320F3ADFE00E26765 /* PullToRefreshViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F461F220F3ADFE00E26765 /* PullToRefreshViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		A18EB64A20EA4086001821AF /* RefreshControlSampleUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshControlSampleUITests.swift; sourceTree = "<group>"; };
 		A18EB64C20EA4086001821AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1F461E620EFDE0700E26765 /* Refreshable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Refreshable.swift; sourceTree = "<group>"; };
+		A1F461F220F3ADFE00E26765 /* PullToRefreshViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PullToRefreshViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				A18EB62A20EA4085001821AF /* AppDelegate.swift */,
 				A18EB62C20EA4085001821AF /* ViewController.swift */,
 				A1F461E620EFDE0700E26765 /* Refreshable.swift */,
+				A1F461F220F3ADFE00E26765 /* PullToRefreshViewController.swift */,
 				A18EB62E20EA4085001821AF /* Main.storyboard */,
 				A18EB63120EA4086001821AF /* Assets.xcassets */,
 				A18EB63320EA4086001821AF /* LaunchScreen.storyboard */,
@@ -261,6 +264,7 @@
 			files = (
 				A1F461E720EFDE0700E26765 /* Refreshable.swift in Sources */,
 				A18EB62D20EA4085001821AF /* ViewController.swift in Sources */,
+				A1F461F320F3ADFE00E26765 /* PullToRefreshViewController.swift in Sources */,
 				A18EB62B20EA4085001821AF /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
