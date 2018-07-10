@@ -16,6 +16,15 @@ enum RefreshState {
     case didLoadingMore
 }
 
+protocol UIImpactFeedbackGeneratorable {
+    func prepare()
+    func impactOccurred()
+}
+
+@available(iOS 10.0, *)
+extension UIImpactFeedbackGenerator: UIImpactFeedbackGeneratorable {
+}
+
 protocol RefreshHeaderView {
     func load(state: RefreshState)
 }
@@ -27,6 +36,9 @@ protocol RefreshableView {
 
     var refreshHeaderView: UIView { get }
     func stopAnimating()
+
+    // haptic
+    var feedbackGenerator: UIImpactFeedbackGeneratorable? { get }
 
     // refresh
     var onRefresh: Block? { get }
@@ -84,6 +96,9 @@ extension RefreshableView where Self: UIScrollView {
                 }, completion: { _ in })
             }
         default:
+            if isDragging {
+                feedbackGenerator?.prepare()
+            }
             break
         }
     }
@@ -100,6 +115,7 @@ extension RefreshableView where Self: UIScrollView {
         guard let onRefresh = onRefresh else { return }
         var varSelf = self
         varSelf.state = .isRefreshing
+        feedbackGenerator?.impactOccurred()
         if let refreshHeaderView = refreshHeaderView as? RefreshHeaderView {
             refreshHeaderView.load(state: .isRefreshing)
         }
@@ -162,6 +178,14 @@ extension RefreshableView where Self: UIScrollView {
 }
 
 class RefreshableTableView: UITableView, RefreshableView {
+
+    let feedbackGenerator: UIImpactFeedbackGeneratorable? = {
+        if #available(iOS 10.0, *) {
+            return UIImpactFeedbackGenerator(style: .light)
+        }
+        return nil
+    }()
+
     var state: RefreshState = .default
     var onRefresh: Block?
     var onLoadMore: Block?
