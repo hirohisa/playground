@@ -18,6 +18,8 @@ class ViewController: PullToRefreshViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        tableView.contentInset = UIEdgeInsets(top: 70, left: 0, bottom: 0, right: 0)
+
         tableView.refreshHeaderView.backgroundColor = UIColor.blue
 
         tableView.onRefresh = {

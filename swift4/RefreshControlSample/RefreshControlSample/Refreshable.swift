@@ -54,6 +54,8 @@ extension Refreshable where Self: UIScrollView {
         switch state {
         case .default:
             if isScrollingForRefreshing() {
+                var varSelf = self
+                varSelf.defaultContentInset = contentInset
                 refresh()
             }
             if isScrollingOverBottom() {
@@ -76,21 +78,19 @@ extension Refreshable where Self: UIScrollView {
         switch state {
         case .isRefreshing:
             if !isDragging {
-                var varSelf = self
-                varSelf.defaultContentInset = contentInset
+                let top = refreshHeaderView.frame.height + defaultContentInset.top
                 UIView.animate(withDuration: 0.25, animations: {
-                    self.contentInset = UIEdgeInsets(top: self.refreshHeaderView.frame.height, left: 0, bottom: 0, right: 0)
+                    self.contentInset = UIEdgeInsets(top: top, left: 0, bottom: 0, right: 0)
                 }, completion: { _ in })
             }
         default:
-            print(state)
             break
         }
     }
 
     // refresh
     private func isScrollingForRefreshing() -> Bool {
-        if contentOffset.y < -1 * refreshHeaderView.frame.height {
+        if contentOffset.y < -1 * (refreshHeaderView.frame.height + defaultContentInset.top) {
             return true
         }
         return false
@@ -142,7 +142,6 @@ extension Refreshable where Self: UIScrollView {
         varSelf.state = .stopRefreshing
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: { [weak self] in
             guard var weakSelf = self else { return }
-
             UIView.animate(withDuration: 0.25, animations: {
                 weakSelf.contentInset = weakSelf.defaultContentInset
             }, completion: { _ in
