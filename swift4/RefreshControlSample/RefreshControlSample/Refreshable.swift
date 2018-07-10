@@ -20,7 +20,7 @@ protocol RefreshHeaderView {
     func load(state: RefreshState)
 }
 
-protocol Refreshable {
+protocol RefreshableView {
     typealias Block = () -> Void
 
     var state: RefreshState { get set }
@@ -37,16 +37,16 @@ protocol Refreshable {
     func observeDragging()
 }
 
-private var refreshableDefaultContentInset = 0
+private var refreshableViewDefaultContentInset = 0
 
-extension Refreshable where Self: UIScrollView {
+extension RefreshableView where Self: UIScrollView {
 
     var defaultContentInset: UIEdgeInsets {
         get {
-            return objc_getAssociatedObject(self, &refreshableDefaultContentInset) as? UIEdgeInsets ?? .zero
+            return objc_getAssociatedObject(self, &refreshableViewDefaultContentInset) as? UIEdgeInsets ?? .zero
         }
         set {
-            objc_setAssociatedObject(self, &refreshableDefaultContentInset, newValue, objc_AssociationPolicy(rawValue: 3)!)
+            objc_setAssociatedObject(self, &refreshableViewDefaultContentInset, newValue, objc_AssociationPolicy(rawValue: 3)!)
         }
     }
 
@@ -161,7 +161,7 @@ extension Refreshable where Self: UIScrollView {
     }
 }
 
-class RefreshableTableView: UITableView, Refreshable {
+class RefreshableTableView: UITableView, RefreshableView {
     var state: RefreshState = .default
     var onRefresh: Block?
     var onLoadMore: Block?

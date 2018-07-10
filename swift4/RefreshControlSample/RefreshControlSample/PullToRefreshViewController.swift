@@ -38,19 +38,19 @@ class RefreshView: UIView, RefreshHeaderView {
 class PullToRefreshViewController: UIViewController, UIScrollViewDelegate {
 
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if let scrollView = scrollView as? Refreshable {
+        if let scrollView = scrollView as? RefreshableView {
             scrollView.observeDragging()
         }
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if let scrollView = scrollView as? Refreshable {
+        if let scrollView = scrollView as? RefreshableView {
             scrollView.observeScrolling()
         }
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        if let scrollView = scrollView as? Refreshable {
+        if let scrollView = scrollView as? RefreshableView {
             scrollView.observeDragging()
         }
     }
